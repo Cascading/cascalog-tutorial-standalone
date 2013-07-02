@@ -54,8 +54,13 @@ task prepareDir(type: Copy){
 task runLeiningen(dependsOn: prepareDir, type: Exec) {
 
   workingDir leinDir
-
-  commandLine 'lein',  'libdir'
+  
+  //temporary hack for teamcity
+  def lein = "lein"
+  if (new File("${rootDir}/lein").exists()){
+      lein = "${rootDir}/lein"
+  }
+  commandLine lein,  'libdir'
 }
 
 task buildTarball(type: Tar, dependsOn: runLeiningen){
