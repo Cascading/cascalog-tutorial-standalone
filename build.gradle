@@ -31,15 +31,14 @@ ext.leinDir = "${assemblyDir}/${project.name}"
 
 ext.finalTarName = "${project.name}.tgz"
 
-apply from: "etc/properties.gradle"
-apply from: "etc/s3Upload.gradle"
-
-
 repositories{
     mavenLocal()
     mavenCentral()
     mavenRepo name: 'conjars', url: 'http://conjars.org/repo/'
 }
+
+apply from: "etc/properties.gradle"
+apply from: "etc/s3Upload.gradle"
 
 
 task prepareDir(type: Copy){
