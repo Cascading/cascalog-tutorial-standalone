@@ -1,0 +1,4 @@
+aws.properties
+*.sw[a-z]
+build
+.gradle
