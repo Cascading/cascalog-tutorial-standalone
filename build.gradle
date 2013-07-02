@@ -44,6 +44,7 @@ repositories{
 task prepareDir(type: Copy){
     from("."){
         include("*.clj")
+        include("README.md")
     }
     into leinDir
 }
