@@ -45,7 +45,7 @@ task s3Upload( type: S3Sync ) {
 
   ext.source = "${buildDir}/publish"
 
-  ext.destination = "${project.s3Bucket}/${project.name}/${majorVersion}/"
+  ext.destination = "${project.s3Bucket}/thirdparty/${project.name}/${majorVersion}/"
 
   from source
   into destination
