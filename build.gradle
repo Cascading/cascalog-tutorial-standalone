@@ -26,9 +26,10 @@ ext.buildDate = new SimpleDateFormat("yyyyMMdd").format( new Date())
 ext.majorVersion = "2.2"
 
 ext.assemblyDir = "${buildDir}/assembly"
-ext.leinDir = "${assemblyDir}/${project.name}-${buildDate}"
 
-ext.finalTarName = "${project.name}-${buildDate}.tgz"
+ext.leinDir = "${assemblyDir}/${project.name}"
+
+ext.finalTarName = "${project.name}.tgz"
 
 apply from: "etc/properties.gradle"
 apply from: "etc/s3Upload.gradle"
@@ -58,7 +59,7 @@ task runLeiningen(dependsOn: prepareDir, type: Exec) {
 }
 
 task buildTarball(type: Tar, dependsOn: runLeiningen){
-    baseName = "${rootProject.name}-${buildDate}"
+    baseName = "${rootProject.name}"
     destinationDir = new File("${s3Upload.source}")
     compression = Compression.GZIP
     from(assemblyDir)
@@ -70,13 +71,3 @@ task createLatestFile(dependsOn: buildTarball) << {
 }
 
 s3Upload.dependsOn createLatestFile
-/*task assembleDist(dependsOn: [buildTarball]) << {*/
-
-     //file( "${s3Upload.source}/latest.txt" ).write( "http://${s3Upload.destination}${finalTarName}" )
-     //file( "${s3Upload.source}/latest-jar.txt" ).write( "http://${s3Upload.destination}${finalJarName}" )
-     //copy{
-        //from("build/libs")
-        //include(finalJarName)
-        //into("${s3Upload.source}")
-     //}
-/*}*/
