@@ -32,4 +32,4 @@ if( System.properties[ 'aws.properties' ] )
 
 ext.awsAccessId = System.properties[ 'publish.aws.accessId' ]
 ext.awsSecretKey = System.properties[ 'publish.aws.secretKey' ]
-ext.s3Bucket = "compatibility.cascading.org"
+ext.s3Bucket = System.properties[ 'publish.bucket' ]

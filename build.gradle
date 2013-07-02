@@ -28,6 +28,8 @@ ext.majorVersion = "2.2"
 ext.assemblyDir = "${buildDir}/assembly"
 ext.leinDir = "${assemblyDir}/${project.name}-${buildDate}"
 
+ext.finalTarName = "${project.name}-${buildDate}.tgz"
+
 apply from: "etc/properties.gradle"
 apply from: "etc/s3Upload.gradle"
 
@@ -61,6 +63,12 @@ task buildTarball(type: Tar, dependsOn: runLeiningen){
     from(assemblyDir)
 }
 
+
+task createLatestFile(dependsOn: buildTarball) << {
+    file( "${s3Upload.source}/latest.txt" ).write( "http://${s3Upload.destination}${finalTarName}" ) 
+}
+
+s3Upload.dependsOn createLatestFile
 /*task assembleDist(dependsOn: [buildTarball]) << {*/
 
      //file( "${s3Upload.source}/latest.txt" ).write( "http://${s3Upload.destination}${finalTarName}" )
@@ -70,5 +78,4 @@ task buildTarball(type: Tar, dependsOn: runLeiningen){
         //include(finalJarName)
         //into("${s3Upload.source}")
      //}
-     //s3Upload.dependsOn =  [assembleDist, test, mtTest]
 /*}*/
