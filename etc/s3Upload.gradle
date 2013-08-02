@@ -26,10 +26,10 @@ buildscript {
     mavenLocal()
     mavenCentral()
     mavenRepo name: 'conjars', url: 'http://conjars.org/repo/'
-    // mavenRepo name: 'monochromeroad', url: 'http://repository-monochromeroad.forge.cloudbees.com/release/'
+    mavenRepo name: 'monochromeroad', url: 'http://repository-monochromeroad.forge.cloudbees.com/release/'
   }
   dependencies {
-       classpath group: 'thirdparty', name: "gradle-aws-s3-sync", version: '0.5.1'
+       classpath group: 'com.monochromeroad.gradle', name: "gradle-aws-s3-sync", version: '0.5'
   }
 }
 
