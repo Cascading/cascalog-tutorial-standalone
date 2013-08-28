@@ -59,6 +59,9 @@ task runLeiningen(dependsOn: prepareDir, type: Exec) {
   if (new File("${rootDir}/lein").exists()){
       lein = "${rootDir}/lein"
   }
+  if (System.getenv( "HTTP_CLIENT" )){
+    environment "HTTP_CLIENT": System.getenv( "HTTP_CLIENT" )
+  }
   commandLine lein,  'libdir'
 }
 
