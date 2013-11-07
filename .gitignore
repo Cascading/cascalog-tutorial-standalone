@@ -2,3 +2,5 @@ aws.properties
 *.sw[a-z]
 build
 .gradle
+target
+.lein-repl-history

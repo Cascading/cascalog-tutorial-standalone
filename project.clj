@@ -27,11 +27,12 @@
   :dependencies [[org.clojure/clojure "1.5.1"] 
                  [cascalog/cascalog "1.10.2"]
                  ; version range pulling in the latest 2.2 build
-                 [cascading/cascading-hadoop "[2.2.0,2.3.0)" ]
+                 [cascading/cascading-hadoop "[2.5.0,2.6.0)" ]
+                 [cascading/cascading-core "[2.5.0,2.6.0)" ]
                  ]
   :profiles {:provided
              {:dependencies
-              [[org.apache.hadoop/hadoop-core "1.1.2"]]}} 
+              [[org.apache.hadoop/hadoop-core "1.2.1"]]}} 
   ; the libdir plugin creates a directory with all dependencies, so that we can
   ; run fully offline
   :plugins [[lein-libdir "0.1.1"]]
