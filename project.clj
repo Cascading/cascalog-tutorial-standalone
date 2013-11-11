@@ -28,7 +28,6 @@
                  [cascalog/cascalog "1.10.2"]
                  ; version range pulling in the latest 2.2 build
                  [cascading/cascading-hadoop "[2.5.0,2.6.0)" ]
-                 [cascading/cascading-core "[2.5.0,2.6.0)" ]
                  ]
   :profiles {:provided
              {:dependencies
