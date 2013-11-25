@@ -17,7 +17,7 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject cascalog-standalone-tutorial "1.10.1"
+(defproject cascalog-standalone-tutorial "2.0.0"
   :description "The cascalog tutorial"
   :url "http://cascalog.org/articles/getting_started.html"
   :license {:name "Apache license version 2"
@@ -25,9 +25,10 @@
   :repositories {"conjars" "http://conjars.org/repo/"}
 
   :dependencies [[org.clojure/clojure "1.5.1"] 
-                 [cascalog/cascalog "1.10.2"]
-                 ; version range pulling in the latest 2.2 build
-                 [cascading/cascading-hadoop "[2.5.0,2.6.0)" ]
+                 [cascalog/cascalog "2.0.0"]
+                 ; version range pulling in the latest 2.5 build
+                 [cascading/cascading-core "2.5.0" ]
+                 [cascading/cascading-hadoop "2.5.0" ]
                  ]
   :profiles {:provided
              {:dependencies

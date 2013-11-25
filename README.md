@@ -18,8 +18,9 @@ creating a tarball and for uploading the tarball into S3, which are used for
 creating the [SDK][sdk].
 
 
-
 [cascalog]: https://github.com/nathanmarz/cascalog
 [tutorial]: http://nathanmarz.com/blog/introducing-cascalog-a-clojure-based-query-language-for-hado.html
 [sdk]: http://cascading.org/sdk
 [concurrent]: http://concurrentinc.com/
+
+
