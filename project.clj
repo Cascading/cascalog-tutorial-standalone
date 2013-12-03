@@ -25,10 +25,9 @@
   :repositories {"conjars" "http://conjars.org/repo/"}
 
   :dependencies [[org.clojure/clojure "1.5.1"] 
+                 [cascading/cascading-hadoop "2.5.1" ]
                  [cascalog/cascalog "2.0.0"]
                  ; version range pulling in the latest 2.5 build
-                 [cascading/cascading-core "2.5.0" ]
-                 [cascading/cascading-hadoop "2.5.0" ]
                  ]
   :profiles {:provided
              {:dependencies

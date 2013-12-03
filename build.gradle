@@ -44,7 +44,7 @@ apply from: "etc/s3Upload.gradle"
 task prepareDir(type: Copy){
     from("."){
         include("*.clj")
-        include("README.md")
+        include("README-lein.md")
     }
     into leinDir
 }
