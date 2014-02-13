@@ -22,18 +22,22 @@
   :url "http://cascalog.org/articles/getting_started.html"
   :license {:name "Apache license version 2"
             :url "http://www.apache.org/licenses/LICENSE-2.0"}
-  :repositories {"conjars" "http://conjars.org/repo/"}
+  :repositories  {"conjars" "http://conjars.org/repo/"}
+  :local-repo "repo"
+  :resource-paths ["src/main/resource"]
 
-  :dependencies [[org.clojure/clojure "1.5.1"] 
-                 [cascading/cascading-hadoop "2.5.1" ]
-                 [cascalog/cascalog "2.0.0"]
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [cascading/cascading-hadoop2-mr1 "2.5.2" ]
+                 [cascalog/cascalog "2.0.0" :exclusions [[cascading/cascading-hadoop]
+                                                         [cascading/cascading-local]]]
                  ; version range pulling in the latest 2.5 build
                  ]
   :profiles {:provided
              {:dependencies
-              [[org.apache.hadoop/hadoop-core "1.2.1"]]}} 
-  ; the libdir plugin creates a directory with all dependencies, so that we can
-  ; run fully offline
-  :plugins [[lein-libdir "0.1.1"]]
-  :libdir-path "lib")
+              [
+               [org.apache.hadoop/hadoop-mapreduce-client-jobclient "2.2.0"]
+               [org.apache.hadoop/hadoop-common "2.2.0"]
+               ]}}
 
+  :plugins [[lein-localrepo "0.5.3"]]
+  )

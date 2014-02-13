@@ -20,7 +20,7 @@
 
 import java.text.SimpleDateFormat
 
-apply plugin: 'java' 
+apply plugin: 'java'
 
 ext.buildDate = new SimpleDateFormat("yyyyMMdd").format( new Date())
 ext.majorVersion = "2.5"
@@ -29,12 +29,12 @@ ext.assemblyDir = "${buildDir}/assembly"
 
 ext.leinDir = "${assemblyDir}/${project.name}"
 
-ext.finalTarName = "${project.name}.tgz"
+ext.finalTarName = "${project.name}-${majorVersion}.tgz"
 
 repositories{
-    mavenLocal()
-    mavenCentral()
-    mavenRepo name: 'conjars', url: 'http://conjars.org/repo/'
+  mavenLocal()
+  mavenCentral()
+  maven{ url 'http://conjars.org/repo/' }
 }
 
 apply from: "etc/properties.gradle"
@@ -42,18 +42,18 @@ apply from: "etc/s3Upload.gradle"
 
 
 task prepareDir(type: Copy){
-    from("."){
-        include("*.clj")
-        include("README-lein.md")
-    }
-    into leinDir
+  from( "." ){
+    include( "*.clj" )
+    include( "README-lein.md")
+    include( "src" )
+  }
+  into leinDir
 }
-
 
 task runLeiningen(dependsOn: prepareDir, type: Exec) {
 
   workingDir leinDir
-  
+
   //temporary hack for teamcity
   def lein = "lein"
   if (new File("${rootDir}/lein").exists()){
@@ -62,19 +62,21 @@ task runLeiningen(dependsOn: prepareDir, type: Exec) {
   if (System.getenv( "HTTP_CLIENT" )){
     environment "HTTP_CLIENT": System.getenv( "HTTP_CLIENT" )
   }
-  commandLine lein,  'libdir'
+  commandLine lein,  'deps'
 }
 
 task buildTarball(type: Tar, dependsOn: runLeiningen){
-    baseName = "${rootProject.name}"
-    destinationDir = new File("${s3Upload.source}")
-    compression = Compression.GZIP
-    from(assemblyDir)
+  baseName = "${rootProject.name}-${project.majorVersion}"
+  destinationDir = new File("${s3Upload.source}")
+  compression = Compression.GZIP
+  from( assemblyDir ){
+    exclude( "target" )
+  }
 }
 
 
 task createLatestFile(dependsOn: buildTarball) << {
-    file( "${s3Upload.source}/latest.txt" ).write( "http://${s3Upload.destination}${finalTarName}" ) 
+    file( "${s3Upload.source}/latest.txt" ).write( "http://${s3Upload.destination}${finalTarName}" )
 }
 
 s3Upload.dependsOn createLatestFile
