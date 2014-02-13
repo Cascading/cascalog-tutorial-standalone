@@ -45,12 +45,17 @@ task prepareDir(type: Copy){
   from( "." ){
     include( "*.clj" )
     include( "README-lein.md")
-    include( "src" )
   }
   into leinDir
 }
 
-task runLeiningen(dependsOn: prepareDir, type: Exec) {
+task copyLog4j(type: Copy){
+
+  from ( "src" )
+  into( "${leinDir}/src" )
+}
+
+task runLeiningen(dependsOn: [copyLog4j, prepareDir], type: Exec) {
 
   workingDir leinDir
 
