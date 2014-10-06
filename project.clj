@@ -17,7 +17,7 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-(defproject cascalog-standalone-tutorial "2.0.0"
+(defproject cascalog-standalone-tutorial "2.1.1"
   :description "The cascalog tutorial"
   :url "http://cascalog.org/articles/getting_started.html"
   :license {:name "Apache license version 2"
@@ -27,16 +27,16 @@
   :resource-paths ["src/main/resource"]
 
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [cascading/cascading-hadoop2-mr1 "2.5.2" ]
-                 [cascalog/cascalog "2.0.0" :exclusions [[cascading/cascading-hadoop]
+                 [cascading/cascading-hadoop2-mr1 "[2.6.0,2.7.0)" ]
+                 [cascalog/cascalog "2.1.1" :exclusions [[cascading/cascading-hadoop]
                                                          [cascading/cascading-local]]]
                  ; version range pulling in the latest 2.5 build
                  ]
   :profiles {:provided
              {:dependencies
               [
-               [org.apache.hadoop/hadoop-mapreduce-client-jobclient "2.2.0"]
-               [org.apache.hadoop/hadoop-common "2.2.0"]
+               [org.apache.hadoop/hadoop-mapreduce-client-jobclient "2.4.1"]
+               [org.apache.hadoop/hadoop-common "2.4.1"]
                ]}}
 
   :plugins [[lein-localrepo "0.5.3"]]
