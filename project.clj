@@ -27,7 +27,7 @@
   :resource-paths ["src/main/resource"]
 
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [cascading/cascading-hadoop2-mr1 "[2.6.0,2.7.0)" ]
+                 [cascading/cascading-hadoop2-mr1 "2.6.0" ]
                  [cascalog/cascalog "2.1.1" :exclusions [[cascading/cascading-hadoop]
                                                          [cascading/cascading-local]]]
                  ; version range pulling in the latest 2.5 build
