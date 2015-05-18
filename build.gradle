@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat
 apply plugin: 'java'
 
 ext.buildDate = new SimpleDateFormat("yyyyMMdd").format( new Date())
-ext.majorVersion = "2.6"
+ext.majorVersion = "2.7"
 
 ext.assemblyDir = "${buildDir}/assembly"
 
